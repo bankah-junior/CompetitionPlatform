@@ -135,9 +135,9 @@ function QuestionDisplay() {
   return (
     <div className="space-y-8">
       <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10">
-        <div className="flex justify-between items-center mb-6">
-          <div className="space-y-2">
-            <h2 className="text-2xl font-bold text-white">Question Display</h2>
+        <div className="flex flex-col sm:flex-row space-y-8 sm:space-y-0 justify-between items-center mb-6">
+          <div className="space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row items-center">
+            <h2 className="text-2xl font-bold text-white mb-4 sm:mb-0">Question Display</h2>
             <div className="flex items-center space-x-4">
               <select
                 className="bg-white/10 text-white border border-white/20 rounded-md px-3 py-2"
@@ -170,7 +170,7 @@ function QuestionDisplay() {
               </div>
             </div>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-8 sm:space-x-4">
             <div className="text-4xl font-mono text-white">
               <Clock className="inline-block mr-2 h-8 w-8" />
               {formatTime(timeLeft)}

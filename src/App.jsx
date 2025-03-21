@@ -64,6 +64,7 @@ function ProtectedRoute({ element }) {
 }
 
 function App() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(
     localStorage.getItem("authenticated") === "true"
   );
@@ -89,10 +90,37 @@ function App() {
                     </span>
                   </Link>
                 </div>
-                <div className="flex space-x-4">
-                  <NavLink to="/home" icon={HomeIcon}>Home</NavLink>
-                  <NavLink to="/questions" icon={Timer}>Questions</NavLink>
-                  <NavLink to="/leaderboard" icon={Keyboard}>Leaderboard</NavLink>
+                <div className="flex items-center space-x-4 md:hidden">
+                  <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="text-white focus:outline-none"
+                  >
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M4 6h16M4 12h16m-7 6h7"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+                <div className="hidden md:flex space-x-4">
+                  <NavLink to="/home" icon={HomeIcon}>
+                    Home
+                  </NavLink>
+                  <NavLink to="/questions" icon={Timer}>
+                    Questions
+                  </NavLink>
+                  <NavLink to="/leaderboard" icon={Keyboard}>
+                    Leaderboard
+                  </NavLink>
                   <button
                     onClick={handleLogout}
                     className="text-white px-3 py-2 rounded-md hover:bg-white/10 transition"
@@ -101,16 +129,49 @@ function App() {
                   </button>
                 </div>
               </div>
+              {isMobileMenuOpen && (
+                <div className="md:hidden">
+                  <div className="flex flex-col space-y-2 mt-2">
+                    <NavLink to="/home" icon={HomeIcon}>
+                      Home
+                    </NavLink>
+                    <NavLink to="/questions" icon={Timer}>
+                      Questions
+                    </NavLink>
+                    <NavLink to="/leaderboard" icon={Keyboard}>
+                      Leaderboard
+                    </NavLink>
+                    <button
+                      onClick={handleLogout}
+                      className="text-white px-3 py-2 rounded-md hover:bg-white/10 transition"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </nav>
         )}
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Routes>
-            <Route path="/" element={<PassphraseAuth onAuth={setIsAuthenticated} />} />
-            <Route path="/home" element={<ProtectedRoute element={<HomePage />} />} />
-            <Route path="/questions" element={<ProtectedRoute element={<QuestionDisplay />} />} />
-            <Route path="/leaderboard" element={<ProtectedRoute element={<Leaderboard />} />} />
+            <Route
+              path="/"
+              element={<PassphraseAuth onAuth={setIsAuthenticated} />}
+            />
+            <Route
+              path="/home"
+              element={<ProtectedRoute element={<HomePage />} />}
+            />
+            <Route
+              path="/questions"
+              element={<ProtectedRoute element={<QuestionDisplay />} />}
+            />
+            <Route
+              path="/leaderboard"
+              element={<ProtectedRoute element={<Leaderboard />} />}
+            />
           </Routes>
         </main>
       </div>
@@ -139,7 +200,9 @@ function HomePage() {
   return (
     <div className="text-center space-y-8">
       <div className="bg-white/5 backdrop-blur-lg rounded-xl p-8 border border-white/10">
-        <h1 className="text-4xl font-bold text-white mb-6">Welcome to the Coding Competition</h1>
+        <h1 className="text-4xl font-bold text-white mb-6">
+          Welcome to the Coding Competition
+        </h1>
         <p className="text-xl text-white/80 mb-8">
           Test your skills across three challenging rounds!
         </p>
@@ -147,17 +210,25 @@ function HomePage() {
           <div className="bg-white/5 rounded-lg p-6 border border-white/10">
             <Timer className="h-12 w-12 text-blue-400 mx-auto mb-4" />
             <h2 className="text-xl font-semibold text-white mb-2">Round One</h2>
-            <p className="text-white/70">Basic programming challenges focusing on fundamental concepts.</p>
+            <p className="text-white/70">
+              Basic programming challenges focusing on fundamental concepts.
+            </p>
           </div>
           <div className="bg-white/5 rounded-lg p-6 border border-white/10">
             <Keyboard className="h-12 w-12 text-green-400 mx-auto mb-4" />
             <h2 className="text-xl font-semibold text-white mb-2">Round Two</h2>
-            <p className="text-white/70">String manipulation and advanced programming problems.</p>
+            <p className="text-white/70">
+              String manipulation and advanced programming problems.
+            </p>
           </div>
           <div className="bg-white/5 rounded-lg p-6 border border-white/10">
             <Trophy className="h-12 w-12 text-yellow-400 mx-auto mb-4" />
-            <h2 className="text-xl font-semibold text-white mb-2">Round Three</h2>
-            <p className="text-white/70">Array operations and complex algorithmic challenges.</p>
+            <h2 className="text-xl font-semibold text-white mb-2">
+              Round Three
+            </h2>
+            <p className="text-white/70">
+              Array operations and complex algorithmic challenges.
+            </p>
           </div>
         </div>
         <div className="mt-8">

@@ -87,13 +87,13 @@ function Leaderboard() {
   return (
     <div className="space-y-8">
       <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 mb-6">
           <div className="flex items-center space-x-3">
             <Trophy className="h-8 w-8 text-yellow-400" />
             <h2 className="text-2xl font-bold text-white">Leaderboard</h2>
           </div>
           <select
-            className="bg-white/10 text-white border border-white/20 rounded-md px-3 py-2"
+            className="bg-white/5 border w-full sm:w-1/4 border-white/20 rounded-md px-3 py-2"
             value={selectedLeaderboard}
             onChange={(e) => setSelectedLeaderboard(e.target.value)}
           >
